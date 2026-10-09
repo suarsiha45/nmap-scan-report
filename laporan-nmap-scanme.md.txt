@@ -1,0 +1,41 @@
+
+
+
+LAPORAN TEMUAN SCAN NMAP
+
+Target   : scanme.nmap.org (45.33.32.156)
+Tanggal  : 9 Oktober 2026
+Alat     : Nmap 7.95
+Perintah : nmap -sV scanme.nmap.org
+
+HASIL SCAN
+Port 22   | SSH        | OpenSSH 6.6.1p1
+Port 80   | HTTP       | Apache httpd 2.4.7
+Port 9929 | nping-echo | Nping echo
+Sistem operasi: Linux (Ubuntu)
+
+TEMUAN 1: Port 22 (OpenSSH 6.6.1p1)
+CVE       : CVE-2016-3115
+Skor CVSS : 6.4(medium)
+Deskripsi : OpenSSH sebelum versi 7.2p2 memiliki celah di sshd.
+            Pengguna yang sudah login dapat melewati batasan
+            perintah shell lewat data X11 forwarding.
+Status    : Berpotensi rentan (perlu verifikasi, karena Ubuntu
+            sering menambal celah tanpa mengubah nomor versi)
+Rekomendasi: Perbarui OpenSSH ke versi terbaru dan nonaktifkan
+            X11 forwarding bila tidak dibutuhkan.
+
+TEMUAN 2: Port 80 (Apache httpd 2.4.7)
+Status    : CVE       : CVE-2014-0226
+Skor CVSS : 6.8 (Medium, CVSS v2)
+Deskripsi : Apache sebelum 2.4.10 memiliki race condition di modul
+            mod_status yang dapat menyebabkan server crash dan
+            berpotensi membocorkan data atau menjalankan kode.
+Status    : Berpotensi rentan (perlu verifikasi, Ubuntu sudah
+            merilis paket perbaikan)
+Rekomendasi: Perbarui Apache ke versi terbaru dan batasi akses
+            mod_status hanya dari jaringan tepercaya.
+
+CATATAN
+Scan dilakukan hanya pada scanme.nmap.org, server yang memang
+disediakan untuk latihan.
